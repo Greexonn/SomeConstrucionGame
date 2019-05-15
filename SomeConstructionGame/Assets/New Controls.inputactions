@@ -1,0 +1,84 @@
+{
+    "name": "New Controls",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "e9960b22-0d3b-4a1e-a62b-647f27d17425",
+            "actions": [
+                {
+                    "name": "Click",
+                    "id": "6c3fd441-c949-4107-b3dd-944e6e3c8670",
+                    "expectedControlLayout": "Button",
+                    "continuous": false,
+                    "passThrough": false,
+                    "initialStateCheck": false,
+                    "processors": "",
+                    "interactions": "Press",
+                    "bindings": []
+                },
+                {
+                    "name": "WheelTorque",
+                    "id": "9d69b41e-605f-4bb6-9ff3-bff13f9936e1",
+                    "expectedControlLayout": "Axis",
+                    "continuous": false,
+                    "passThrough": false,
+                    "initialStateCheck": false,
+                    "processors": "",
+                    "interactions": "",
+                    "bindings": []
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ed0d32f7-f1c8-4901-accf-300b77b7703b",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "82f0fee7-f38a-4a4f-8871-3fca3c0f6822",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WheelTorque",
+                    "isComposite": true,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "negative",
+                    "id": "8ef6075e-79c3-46d0-8bc9-bce209d92635",
+                    "path": "<Keyboard>/#(S)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WheelTorque",
+                    "isComposite": false,
+                    "isPartOfComposite": true,
+                    "modifiers": ""
+                },
+                {
+                    "name": "positive",
+                    "id": "1e954524-6bb2-494d-afa5-86c4d4ec8fcb",
+                    "path": "<Keyboard>/#(W)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WheelTorque",
+                    "isComposite": false,
+                    "isPartOfComposite": true,
+                    "modifiers": ""
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -40,6 +40,28 @@ public class BaseInput : IInputActionCollection
                     ""processors"": """",
                     ""interactions"": """",
                     ""bindings"": []
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""id"": ""0ba12a04-9546-4bfa-a937-19c623b87b04"",
+                    ""expectedControlLayout"": ""Button"",
+                    ""continuous"": false,
+                    ""passThrough"": false,
+                    ""initialStateCheck"": false,
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""bindings"": []
+                },
+                {
+                    ""name"": ""Brake"",
+                    ""id"": ""55e1d409-b4dc-4325-ab17-93aeda1014eb"",
+                    ""expectedControlLayout"": ""Axis"",
+                    ""continuous"": false,
+                    ""passThrough"": false,
+                    ""initialStateCheck"": false,
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""bindings"": []
                 }
             ],
             ""bindings"": [
@@ -90,6 +112,30 @@ public class BaseInput : IInputActionCollection
                     ""isComposite"": false,
                     ""isPartOfComposite"": true,
                     ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6fe2e83f-9ff5-43ee-92a1-83fbb4e735c9"",
+                    ""path"": ""<Keyboard>/#(R)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8b1a4c6d-48b7-4919-a5c8-a594c763dc0f"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Brake"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
                 }
             ]
         }
@@ -100,6 +146,8 @@ public class BaseInput : IInputActionCollection
         m_Player = asset.GetActionMap("Player");
         m_Player_Click = m_Player.GetAction("Click");
         m_Player_WheelTorque = m_Player.GetAction("WheelTorque");
+        m_Player_Rotate = m_Player.GetAction("Rotate");
+        m_Player_Brake = m_Player.GetAction("Brake");
     }
     ~BaseInput()
     {
@@ -144,12 +192,16 @@ public class BaseInput : IInputActionCollection
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private InputAction m_Player_Click;
     private InputAction m_Player_WheelTorque;
+    private InputAction m_Player_Rotate;
+    private InputAction m_Player_Brake;
     public struct PlayerActions
     {
         private BaseInput m_Wrapper;
         public PlayerActions(BaseInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Click { get { return m_Wrapper.m_Player_Click; } }
         public InputAction @WheelTorque { get { return m_Wrapper.m_Player_WheelTorque; } }
+        public InputAction @Rotate { get { return m_Wrapper.m_Player_Rotate; } }
+        public InputAction @Brake { get { return m_Wrapper.m_Player_Brake; } }
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -166,6 +218,12 @@ public class BaseInput : IInputActionCollection
                 WheelTorque.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWheelTorque;
                 WheelTorque.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWheelTorque;
                 WheelTorque.cancelled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWheelTorque;
+                Rotate.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
+                Rotate.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
+                Rotate.cancelled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
+                Brake.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBrake;
+                Brake.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBrake;
+                Brake.cancelled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBrake;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -176,6 +234,12 @@ public class BaseInput : IInputActionCollection
                 WheelTorque.started += instance.OnWheelTorque;
                 WheelTorque.performed += instance.OnWheelTorque;
                 WheelTorque.cancelled += instance.OnWheelTorque;
+                Rotate.started += instance.OnRotate;
+                Rotate.performed += instance.OnRotate;
+                Rotate.cancelled += instance.OnRotate;
+                Brake.started += instance.OnBrake;
+                Brake.performed += instance.OnBrake;
+                Brake.cancelled += instance.OnBrake;
             }
         }
     }
@@ -190,5 +254,7 @@ public class BaseInput : IInputActionCollection
     {
         void OnClick(InputAction.CallbackContext context);
         void OnWheelTorque(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
+        void OnBrake(InputAction.CallbackContext context);
     }
 }

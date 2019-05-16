@@ -8,6 +8,7 @@ public class Wheel : MonoBehaviour
     public WheelCollider wheel;
 
     public float motorPower;
+    public float brakeTorque;
 
     void Start()
     {
@@ -15,11 +16,14 @@ public class Wheel : MonoBehaviour
 
         //subscribe
         SimpleInputHandler.OnWheelTorque += ApplyTorque;
+        SimpleInputHandler.OnBrake += ApplyBreakTorque;
     }
 
     void OnDestroy()
     {
+        //unsubscribe
         SimpleInputHandler.OnWheelTorque -= ApplyTorque;
+        SimpleInputHandler.OnBrake -= ApplyBreakTorque;
     }
 
     void Update()
@@ -33,5 +37,10 @@ public class Wheel : MonoBehaviour
     public void ApplyTorque(int value)
     {
         wheel.motorTorque = motorPower * value;
+    }
+
+    public void ApplyBreakTorque(int value)
+    {
+        wheel.brakeTorque = brakeTorque * value;
     }
 }

@@ -72,11 +72,11 @@ WheelCollider:
   m_Center: {x: 0, y: 0.15, z: 0}
   m_Radius: 0.75
   m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
+    spring: 10000
+    damper: 1000
     targetPosition: 0.5
   m_SuspensionDistance: 0.3
-  m_ForceAppPointDistance: 0
+  m_ForceAppPointDistance: 0.75
   m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
@@ -172,7 +172,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wheelMesh: {fileID: 3321195250568954888}
   wheel: {fileID: 7177563915851451173}
-  motorPower: 100
+  motorPower: 500
+  brakeTorque: 2000
 --- !u!114 &2371802838827997013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,8 +194,8 @@ FixedJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7735028013434249811}
   m_ConnectedBody: {fileID: 0}
-  m_BreakForce: 20000
-  m_BreakTorque: 20000
+  m_BreakForce: 30000
+  m_BreakTorque: 30000
   m_EnableCollision: 1
   m_EnablePreprocessing: 1
   m_MassScale: 1

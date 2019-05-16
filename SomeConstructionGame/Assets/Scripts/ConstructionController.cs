@@ -16,6 +16,8 @@ public class ConstructionController : MonoBehaviour
     private GameObject _previewInstance;
     private Side _targetSide;
 
+    private float _extendAngle;
+
     void Awake()
     {
         instance = this;
@@ -29,9 +31,14 @@ public class ConstructionController : MonoBehaviour
         PointerController.OnPointEnded += RemovePreview;
         //attachment events
         SimpleInputHandler.OnClick += AttachPart;
+        //config events
+        SimpleInputHandler.OnRotate += RotatePart;
 
         //
         SetLayer(1);
+
+        //
+        _extendAngle = 0;
     }
 
     void OnDestroy()
@@ -42,6 +49,8 @@ public class ConstructionController : MonoBehaviour
         PointerController.OnPointEnded -= RemovePreview;
         //attachment events
         SimpleInputHandler.OnClick -= AttachPart;
+        //config events
+        SimpleInputHandler.OnRotate += RotatePart;
     }
 
     public void SetLayer(int id)
@@ -67,10 +76,17 @@ public class ConstructionController : MonoBehaviour
         {
             GameObject _part = Instantiate(currentPart, _previewInstance.transform.position, _previewInstance.transform.rotation);
             FixedJoint _joint = _part.GetComponent<FixedJoint>();
+            if (_joint == null)
+            {
+                _joint = _part.GetComponentInChildren<FixedJoint>();
+            }
             Rigidbody _anchor = _targetSide.body;
             //attach part
             _joint.connectedBody = _anchor;
             _targetSide.AttachObject();
+
+            //reset
+            _extendAngle = 0;
         }
     }
 
@@ -91,6 +107,8 @@ public class ConstructionController : MonoBehaviour
         if (_previewInstance != null)
         {
             _previewInstance.transform.position = side.transform.position + (side.transform.forward * (0.5f * _previewInstance.transform.localScale.z));
+            _previewInstance.transform.rotation = side.transform.rotation;
+            _previewInstance.transform.Rotate(transform.up * _extendAngle);
         }
     }
 
@@ -101,6 +119,18 @@ public class ConstructionController : MonoBehaviour
         if (_previewInstance != null)
         {
             Destroy(_previewInstance);
+        }
+    }
+
+    public void RotatePart()
+    {
+        if (_extendAngle == 0)
+        {
+            _extendAngle = 180;
+        }
+        else
+        {
+            _extendAngle = 0;
         }
     }
 }

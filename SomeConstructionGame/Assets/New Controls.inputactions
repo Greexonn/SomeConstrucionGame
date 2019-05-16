@@ -26,6 +26,28 @@
                     "processors": "",
                     "interactions": "",
                     "bindings": []
+                },
+                {
+                    "name": "Rotate",
+                    "id": "0ba12a04-9546-4bfa-a937-19c623b87b04",
+                    "expectedControlLayout": "Button",
+                    "continuous": false,
+                    "passThrough": false,
+                    "initialStateCheck": false,
+                    "processors": "",
+                    "interactions": "Press",
+                    "bindings": []
+                },
+                {
+                    "name": "Brake",
+                    "id": "55e1d409-b4dc-4325-ab17-93aeda1014eb",
+                    "expectedControlLayout": "Axis",
+                    "continuous": false,
+                    "passThrough": false,
+                    "initialStateCheck": false,
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "bindings": []
                 }
             ],
             "bindings": [
@@ -75,6 +97,30 @@
                     "action": "WheelTorque",
                     "isComposite": false,
                     "isPartOfComposite": true,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "6fe2e83f-9ff5-43ee-92a1-83fbb4e735c9",
+                    "path": "<Keyboard>/#(R)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "8b1a4c6d-48b7-4919-a5c8-a594c763dc0f",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Brake",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
                     "modifiers": ""
                 }
             ]

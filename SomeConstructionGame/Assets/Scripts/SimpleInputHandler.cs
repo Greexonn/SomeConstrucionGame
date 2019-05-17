@@ -19,6 +19,7 @@ public class SimpleInputHandler : MonoBehaviour, BaseInput.IPlayerActions
     public static event SimpleInputAction OnRotate;
     public static event AxisInputAction OnWheelTorque;
     public static event AxisInputAction OnBrake;
+    public static event AxisInputAction OnTurn;
 
     void Awake()
     {
@@ -77,6 +78,19 @@ public class SimpleInputHandler : MonoBehaviour, BaseInput.IPlayerActions
         if (OnBrake != null)
         {
             OnBrake(_value);
+        }
+    }
+
+    void BaseInput.IPlayerActions.OnTurn(InputAction.CallbackContext context)
+    {
+        if (isPlayMode)
+        {
+            int _value = System.Convert.ToInt16(context.ReadValueAsObject());
+
+            if (OnTurn != null)
+            {
+                OnTurn(_value);
+            }
         }
     }
 }

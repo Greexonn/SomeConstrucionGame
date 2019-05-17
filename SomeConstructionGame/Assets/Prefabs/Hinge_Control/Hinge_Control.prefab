@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1599600057561666107}
   - component: {fileID: 5704973671781822567}
   m_Layer: 9
-  m_Name: Hinge
+  m_Name: Hinge_Control
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 1556126770135571441}
   - component: {fileID: 3093230821930684557}
   - component: {fileID: 2407211219880454904}
+  - component: {fileID: 6213506518040836999}
   m_Layer: 9
   m_Name: Hinge_Move
   m_TagString: Untagged
@@ -107,7 +108,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 1a7bc7b186468a04d8758456a2ef5b8e, type: 2}
-  - {fileID: 2100000, guid: 88169c4071b4e3945a266b79a4c22330, type: 2}
+  - {fileID: 2100000, guid: 7453a4f1452716b41b0d7fae621c94a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,10 +156,10 @@ HingeJoint:
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 3.9258907e-10, y: 0.002134, z: 5.9604643e-10}
-  m_UseSpring: 0
+  m_UseSpring: 1
   m_Spring:
-    spring: 0
-    damper: 0
+    spring: 1000000
+    damper: 100000
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -167,15 +168,15 @@ HingeJoint:
     freeSpin: 0
   m_UseLimits: 1
   m_Limits:
-    min: -75
-    max: 75
+    min: -65
+    max: 65
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 1
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!65 &2407211219880454904
@@ -191,6 +192,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.00526, y: 0.0035515875, z: 0.00526}
   m_Center: {x: 7.315041e-18, y: -0.0008542064, z: 1.1632227e-24}
+--- !u!114 &6213506518040836999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2609384620498574790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c66eb7d985872a540b144681cadfefcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angle: 0
+  step: 0.7
 --- !u!1 &5280799056376396566
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +300,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 1a7bc7b186468a04d8758456a2ef5b8e, type: 2}
-  - {fileID: 2100000, guid: 88169c4071b4e3945a266b79a4c22330, type: 2}
+  - {fileID: 2100000, guid: 7453a4f1452716b41b0d7fae621c94a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -402,7 +402,7 @@ FixedJoint:
   m_BreakForce: 30000
   m_BreakTorque: 30000
   m_EnableCollision: 1
-  m_EnablePreprocessing: 1
+  m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!114 &5141208114969149421

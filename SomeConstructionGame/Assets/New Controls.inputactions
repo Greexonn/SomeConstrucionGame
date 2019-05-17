@@ -48,6 +48,17 @@
                     "processors": "",
                     "interactions": "Press(behavior=2)",
                     "bindings": []
+                },
+                {
+                    "name": "Turn",
+                    "id": "898d8ebf-b914-41ce-b9b3-428b1f144867",
+                    "expectedControlLayout": "",
+                    "continuous": true,
+                    "passThrough": false,
+                    "initialStateCheck": false,
+                    "processors": "",
+                    "interactions": "",
+                    "bindings": []
                 }
             ],
             "bindings": [
@@ -121,6 +132,42 @@
                     "action": "Brake",
                     "isComposite": false,
                     "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "1dd60311-01ad-449d-867a-8b64485ad577",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn",
+                    "isComposite": true,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "negative",
+                    "id": "3ed92441-f411-4535-9e1a-00886cfd61c8",
+                    "path": "<Keyboard>/#(A)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn",
+                    "isComposite": false,
+                    "isPartOfComposite": true,
+                    "modifiers": ""
+                },
+                {
+                    "name": "positive",
+                    "id": "50a494d4-8cda-4e1c-b673-1f339f5d631d",
+                    "path": "<Keyboard>/#(D)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn",
+                    "isComposite": false,
+                    "isPartOfComposite": true,
                     "modifiers": ""
                 }
             ]

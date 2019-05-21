@@ -14,6 +14,7 @@ public class ConstructionController : MonoBehaviour
 
 
     private GameObject _previewInstance;
+    private UnitPreview _preview;
     private Side _targetSide;
 
     private float _extendAngle;
@@ -31,8 +32,6 @@ public class ConstructionController : MonoBehaviour
         PointerController.OnPointEnded += RemovePreview;
         //attachment events
         SimpleInputHandler.OnClick += AttachPart;
-        //config events
-        SimpleInputHandler.OnRotate += RotatePart;
 
         //
         SetLayer(1);
@@ -49,8 +48,6 @@ public class ConstructionController : MonoBehaviour
         PointerController.OnPointEnded -= RemovePreview;
         //attachment events
         SimpleInputHandler.OnClick -= AttachPart;
-        //config events
-        SimpleInputHandler.OnRotate += RotatePart;
     }
 
     public void SetLayer(int id)
@@ -99,16 +96,17 @@ public class ConstructionController : MonoBehaviour
         _targetSide = side.GetComponent<Side>();
 
         if (_targetSide != null)
+        {
             _previewInstance = Instantiate(currentPartPreview, side.transform.position, side.transform.rotation);
+            _preview = _previewInstance.GetComponent<UnitPreview>();
+        }
     }
 
     public void UpdatePreview(GameObject side)
     {
-        if (_previewInstance != null)
+        if (_preview != null)
         {
-            _previewInstance.transform.position = side.transform.position + (side.transform.forward * (0.5f * _previewInstance.transform.localScale.z));
-            _previewInstance.transform.rotation = side.transform.rotation;
-            _previewInstance.transform.Rotate(transform.up * _extendAngle);
+            _preview.UpdatePlace(side);
         }
     }
 
@@ -119,18 +117,6 @@ public class ConstructionController : MonoBehaviour
         if (_previewInstance != null)
         {
             Destroy(_previewInstance);
-        }
-    }
-
-    public void RotatePart()
-    {
-        if (_extendAngle == 0)
-        {
-            _extendAngle = 180;
-        }
-        else
-        {
-            _extendAngle = 0;
         }
     }
 }

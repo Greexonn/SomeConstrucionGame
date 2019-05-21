@@ -73,6 +73,17 @@ public class BaseInput : IInputActionCollection
                     ""processors"": """",
                     ""interactions"": """",
                     ""bindings"": []
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""id"": ""b429841a-f8d5-4566-b260-fcf842523575"",
+                    ""expectedControlLayout"": ""Button"",
+                    ""continuous"": true,
+                    ""passThrough"": false,
+                    ""initialStateCheck"": false,
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""bindings"": []
                 }
             ],
             ""bindings"": [
@@ -183,6 +194,18 @@ public class BaseInput : IInputActionCollection
                     ""isComposite"": false,
                     ""isPartOfComposite"": true,
                     ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""144a87aa-da7a-4b37-acc1-5dc5fb021bea"",
+                    ""path"": ""<Keyboard>/#(F)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
                 }
             ]
         }
@@ -196,6 +219,7 @@ public class BaseInput : IInputActionCollection
         m_Player_Rotate = m_Player.GetAction("Rotate");
         m_Player_Brake = m_Player.GetAction("Brake");
         m_Player_Turn = m_Player.GetAction("Turn");
+        m_Player_Fire = m_Player.GetAction("Fire");
     }
     ~BaseInput()
     {
@@ -243,6 +267,7 @@ public class BaseInput : IInputActionCollection
     private InputAction m_Player_Rotate;
     private InputAction m_Player_Brake;
     private InputAction m_Player_Turn;
+    private InputAction m_Player_Fire;
     public struct PlayerActions
     {
         private BaseInput m_Wrapper;
@@ -252,6 +277,7 @@ public class BaseInput : IInputActionCollection
         public InputAction @Rotate { get { return m_Wrapper.m_Player_Rotate; } }
         public InputAction @Brake { get { return m_Wrapper.m_Player_Brake; } }
         public InputAction @Turn { get { return m_Wrapper.m_Player_Turn; } }
+        public InputAction @Fire { get { return m_Wrapper.m_Player_Fire; } }
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -277,6 +303,9 @@ public class BaseInput : IInputActionCollection
                 Turn.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurn;
                 Turn.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurn;
                 Turn.cancelled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurn;
+                Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                Fire.cancelled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -296,6 +325,9 @@ public class BaseInput : IInputActionCollection
                 Turn.started += instance.OnTurn;
                 Turn.performed += instance.OnTurn;
                 Turn.cancelled += instance.OnTurn;
+                Fire.started += instance.OnFire;
+                Fire.performed += instance.OnFire;
+                Fire.cancelled += instance.OnFire;
             }
         }
     }
@@ -313,5 +345,6 @@ public class BaseInput : IInputActionCollection
         void OnRotate(InputAction.CallbackContext context);
         void OnBrake(InputAction.CallbackContext context);
         void OnTurn(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
     }
 }

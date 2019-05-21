@@ -103,9 +103,9 @@ GameObject:
   - component: {fileID: 7429501961061159769}
   - component: {fileID: 4789381089984816197}
   - component: {fileID: 2849212694211281313}
+  - component: {fileID: 7151189469791014377}
   - component: {fileID: 2371802838827997013}
   - component: {fileID: 4595256905971564904}
-  - component: {fileID: 8477899155818293014}
   m_Layer: 9
   m_Name: Wheel
   m_TagString: Untagged
@@ -158,6 +158,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7151189469791014377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7735028013434249811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e860192bd744a3047904e60d755b5151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelMesh: {fileID: 3321195250568954888}
+  wheel: {fileID: 7177563915851451173}
+  motorPower: 1000
+  brakeTorque: 2000
 --- !u!114 &2371802838827997013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,22 +200,6 @@ FixedJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &8477899155818293014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7735028013434249811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e860192bd744a3047904e60d755b5151, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wheelMesh: {fileID: 3321195250568954888}
-  wheel: {fileID: 7177563915851451173}
-  motorPower: 0
-  brakeTorque: 0
 --- !u!1001 &7145497655829980071
 PrefabInstance:
   m_ObjectHideFlags: 0

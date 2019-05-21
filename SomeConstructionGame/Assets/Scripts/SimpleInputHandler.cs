@@ -17,6 +17,7 @@ public class SimpleInputHandler : MonoBehaviour, BaseInput.IPlayerActions
     //events
     public static event SimpleInputAction OnClick;
     public static event SimpleInputAction OnRotate;
+    public static event SimpleInputAction OnFire;
     public static event AxisInputAction OnWheelTorque;
     public static event AxisInputAction OnBrake;
     public static event AxisInputAction OnTurn;
@@ -91,6 +92,14 @@ public class SimpleInputHandler : MonoBehaviour, BaseInput.IPlayerActions
             {
                 OnTurn(_value);
             }
+        }
+    }
+
+    void BaseInput.IPlayerActions.OnFire(InputAction.CallbackContext context)
+    {
+        if (OnFire != null)
+        {
+            OnFire();
         }
     }
 }
